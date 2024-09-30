@@ -21,7 +21,7 @@ const SignUp = () => {
           <View className="justify-left">
             <Image
               source={MedaFarm}
-              resizeMode="cover"
+              resizeMode="contain"
               className="w-[155px] h-[65]"
             />
           </View>
