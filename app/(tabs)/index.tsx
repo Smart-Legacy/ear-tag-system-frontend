@@ -6,6 +6,7 @@ import { StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import MedaFarm from "@/assets/images/MedaName.png";
+import Cow from "@/assets/icons/cow.png";
 
 export default function HomeScreen() {
   // Sample data for the ProgressChart
@@ -108,8 +109,16 @@ export default function HomeScreen() {
       </ScrollView>
 
       {/* Fixed "Add Item" Icon */}
-      <View style={styles.fixedIconContainer}>
-        <Ionicons size={64} name="add-circle" color="white" />
+      <View
+        style={styles.fixedIconContainer}
+        className="bg-white rounded-3xl p-1"
+      >
+        {/* <Ionicons size={64} name="add-circle" color="white" /> */}
+        <Image
+          source={Cow}
+          resizeMode="contain"
+          className="w-[40px] h-[40px]"
+        />
       </View>
     </View>
   );
@@ -123,7 +132,7 @@ const styles = StyleSheet.create({
   },
   fixedIconContainer: {
     position: "absolute",
-    right: 20,
-    bottom: 20,
+    right: 25,
+    bottom: 30,
   },
 });
