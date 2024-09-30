@@ -25,9 +25,10 @@ const SignUp = () => {
               className="w-[155px] h-[65]"
             />
           </View>
-          <Text className="text-2xl text-white text-semibold mt-4 font-psemibold">
+
+          <ThemedText className="text-2xl text-semibold mt-4 font-psemibold">
             Sign Up
-          </Text>
+          </ThemedText>
 
           <FormField
             title="Username"
