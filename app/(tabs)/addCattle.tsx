@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
+import { Href } from "expo-router";
 
 export default function CattleListPage() {
   const router = useRouter();
@@ -50,7 +51,9 @@ export default function CattleListPage() {
             <TouchableOpacity
               key={index}
               className="bg-gray-200 px-4 py-2 rounded-lg flex-row justify-between items-center shadow"
-              //   onPress={() => router.push(`/cattle/${cattle.id}`)}
+              onPress={() =>
+                router.push(`/detail/${cattle.id}` as Href<string>)
+              }
             >
               <View>
                 <View className="flex flex-row gap-2">
