@@ -71,9 +71,12 @@ export default function CattleListPage() {
           </Text>
         )}
       </ScrollView>
-      <View style={styles.fixedIconContainer}>
+      <TouchableOpacity
+        style={styles.fixedIconContainer}
+        onPress={() => router.push(`/cattleAdd` as Href<string>)}
+      >
         <Ionicons size={64} name="add-circle" color="white" />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }
