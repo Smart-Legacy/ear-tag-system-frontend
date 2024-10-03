@@ -137,7 +137,7 @@ export default function CattleAddPage() {
         </View>
 
         {/* Input for date */}
-        <Text className="text-white mb-2">Date</Text>
+        <Text className="text-white mb-2">Date of Birth</Text>
         <View className="mb-4">
           <TouchableOpacity
             style={{ backgroundColor: "#4B5563", padding: 16, borderRadius: 8 }}

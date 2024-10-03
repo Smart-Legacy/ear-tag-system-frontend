@@ -10,6 +10,8 @@ import {
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
 import { Href } from "expo-router";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 
 export default function CattleListPage() {
   const router = useRouter();
@@ -34,17 +36,28 @@ export default function CattleListPage() {
 
   return (
     <View className="flex-1  p-4 ">
-      <Text className="text-xl text-white font-bold mb-4 mt-4">Livestock</Text>
-      <View className="border-2 border-gray-500 bg-gray-200 mb-4 w-full h-16 px-4 rounded-2xl items-center flex-row">
+      <ThemedText
+        darkColor="white"
+        lightColor="black"
+        type="subtitle"
+        textStyles="font-bold mb-4 mt-4"
+      >
+        Livestock
+      </ThemedText>
+      <ThemedView
+        darkColor="rgb(229 231 235)"
+        lightColor="rgb(229 231 235)"
+        otherStyles="border-2 border-gray-400 mb-4 w-full h-16 px-4 rounded-2xl items-center flex-row"
+      >
         <TextInput
-          className="flex-1 text-black text-base"
+          className="flex-1 text-base"
           value={searchText}
           placeholder="Search"
           placeholderTextColor="#7b7b8b"
           onChangeText={(text) => setSearchText(text)}
         />
         <Ionicons name="search" size={30} color="black" />
-      </View>
+      </ThemedView>
       <ScrollView className="space-y-4">
         {filteredCattle.length > 0 ? (
           filteredCattle.map((cattle, index) => (
