@@ -14,8 +14,12 @@ import { Picker } from "@react-native-picker/picker";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
+import { ThemedText } from "@/components/ThemedText";
+import { useColorScheme } from "react-native";
 
 export default function CattleAddPage() {
+  const theme = useColorScheme() ?? "light";
+
   const [animalType, setAnimalType] = useState<string | null>(null);
   const [sex, setSex] = useState<string | null>(null);
   const [weight, setWeight] = useState<string | null>(null);
@@ -79,15 +83,28 @@ export default function CattleAddPage() {
   return (
     <View className="flex-1  p-4 ">
       <ScrollView contentContainerStyle={{ padding: 16 }}>
-        <Text className="text-xl font-bold mb-4 text-white">Add Cattle</Text>
+        <ThemedText
+          lightColor="black"
+          darkColor="white"
+          className="text-xl font-bold mb-4"
+        >
+          Add Cattle
+        </ThemedText>
 
         {/* Picker for selecting animal type */}
         <View className="mb-4">
-          <Text className="text-white mb-2">Animal Type</Text>
+          <ThemedText darkColor="white" lightColor="black" className="mb-2">
+            Animal Type
+          </ThemedText>
           <Picker
             selectedValue={animalType}
             onValueChange={(itemValue) => setAnimalType(itemValue)}
-            style={{ color: "white", backgroundColor: "#333", borderRadius: 8 }}
+            style={{
+              color: theme === "light" ? "black" : "white",
+              backgroundColor:
+                theme === "light" ? "rgb(229 231 235)" : "rgb(55 65 81)",
+              borderRadius: 8,
+            }}
           >
             <Picker.Item label="Select Animal Type" value={null} />
             <Picker.Item label="Goat" value="goat" />
@@ -98,11 +115,18 @@ export default function CattleAddPage() {
 
         {/* Picker for selecting sex */}
         <View className="mb-4">
-          <Text className="text-white mb-2">Sex</Text>
+          <ThemedText darkColor="white" lightColor="black" className="mb-2">
+            Sex
+          </ThemedText>
           <Picker
             selectedValue={sex}
             onValueChange={(itemValue) => setSex(itemValue)}
-            style={{ color: "white", backgroundColor: "#333", borderRadius: 8 }}
+            style={{
+              color: theme === "light" ? "black" : "white",
+              backgroundColor:
+                theme === "light" ? "rgb(229 231 235)" : "rgb(55 65 81)",
+              borderRadius: 16,
+            }}
           >
             <Picker.Item label="Select Sex" value={null} />
             <Picker.Item label="Male" value="male" />
@@ -112,38 +136,64 @@ export default function CattleAddPage() {
 
         {/* Input for weight */}
         <View className="mb-4">
-          <Text className="text-white mb-2">Weight (kg)</Text>
+          <ThemedText darkColor="white" lightColor="black" className="mb-2">
+            Weight (kg)
+          </ThemedText>
           <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
+            className="p-2 rounded-md"
             placeholder="Enter weight"
             value={weight}
             onChangeText={(text) => setWeight(text)}
             keyboardType="numeric"
             placeholderTextColor="#999"
+            style={{
+              color: theme === "light" ? "black" : "white",
+              backgroundColor:
+                theme === "light" ? "rgb(229 231 235)" : "rgb(55 65 81)",
+              borderRadius: 16,
+            }}
           />
         </View>
 
         {/* Input for height */}
         <View className="mb-4">
-          <Text className="text-white mb-2">Height (cm)</Text>
+          <ThemedText darkColor="white" lightColor="black" className="mb-2">
+            Height (cm)
+          </ThemedText>
+
           <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
+            className="p-2 rounded-md"
             placeholder="Enter height"
             value={height}
             onChangeText={(text) => setHeight(text)}
             keyboardType="numeric"
             placeholderTextColor="#999"
+            style={{
+              color: theme === "light" ? "black" : "white",
+              backgroundColor:
+                theme === "light" ? "rgb(229 231 235)" : "rgb(55 65 81)",
+            }}
           />
         </View>
 
         {/* Input for date */}
-        <Text className="text-white mb-2">Date of Birth</Text>
+
+        <ThemedText darkColor="white" lightColor="black" className="mb-2">
+          Date of Birth
+        </ThemedText>
         <View className="mb-4">
           <TouchableOpacity
-            style={{ backgroundColor: "#4B5563", padding: 16, borderRadius: 8 }}
+            style={{
+              backgroundColor:
+                theme === "light" ? "rgb(229 231 235)" : "rgb(55 65 81)",
+              padding: 16,
+              borderRadius: 8,
+            }}
             onPress={showDatePicker}
           >
-            <Text style={{ color: "white" }}>{date.toDateString()}</Text>
+            <Text style={{ color: theme === "light" ? "black" : "white" }}>
+              {date.toDateString()}
+            </Text>
           </TouchableOpacity>
           {show && (
             <DateTimePicker
