@@ -1,9 +1,10 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { Text, View, ScrollView, Image } from "react-native";
+import { Text, View, ScrollView, Image, TouchableOpacity } from "react-native";
 import { BarChart, ProgressChart } from "react-native-chart-kit";
 import { StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useRouter } from "expo-router";
 
 import MedaFarm from "@/assets/images/MedaName.png";
 import Cow from "@/assets/icons/cow.png";
@@ -11,8 +12,10 @@ import CowWhite from "@/assets/icons/cowWhite.png";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { Href } from "expo-router";
 
 export default function HomeScreen() {
+  const router = useRouter();
   // Sample data for the ProgressChart
   const progressData = {
     labels: ["🐑", "🐐", "🐮"],
@@ -176,8 +179,9 @@ export default function HomeScreen() {
       </ScrollView>
 
       {/* Fixed "Add Item" Icon */}
-      <View
+      <TouchableOpacity
         style={styles.fixedIconContainer}
+        onPress={() => router.push(`/cattleList` as Href<string>)}
         className="bg-white rounded-3xl p-1"
       >
         {/* <Ionicons size={64} name="add-circle" color="white" /> */}
@@ -186,7 +190,7 @@ export default function HomeScreen() {
           resizeMode="contain"
           className="w-[40px] h-[40px]"
         />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }
