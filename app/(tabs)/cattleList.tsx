@@ -12,9 +12,11 @@ import { useRouter } from "expo-router";
 import { Href } from "expo-router";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { useColorScheme } from "react-native";
 
 export default function CattleListPage() {
   const router = useRouter();
+  const theme = useColorScheme() ?? "light";
 
   const [searchText, setSearchText] = useState<string>("");
 
@@ -35,7 +37,7 @@ export default function CattleListPage() {
   );
 
   return (
-    <View className="flex-1  p-4 ">
+    <ThemedView className="flex-1  p-4 ">
       <ThemedText
         darkColor="white"
         lightColor="black"
@@ -47,7 +49,7 @@ export default function CattleListPage() {
       <ThemedView
         darkColor="rgb(229 231 235)"
         lightColor="rgb(229 231 235)"
-        otherStyles="border-2 border-gray-400 mb-4 w-full h-16 px-4 rounded-2xl items-center flex-row"
+        otherStyles="border-2 border-gray-300 mb-4 w-full h-16 px-4 rounded-2xl items-center flex-row"
       >
         <TextInput
           className="flex-1 text-base"
@@ -87,10 +89,15 @@ export default function CattleListPage() {
       <TouchableOpacity
         style={styles.fixedIconContainer}
         onPress={() => router.push(`/cattleAdd` as Href<string>)}
+        className="rounded-3xl  border border-gray-200 shadow shadow-2xl"
       >
-        <Ionicons size={64} name="add-circle" color="white" />
+        <Ionicons
+          size={48}
+          name="add-outline"
+          color={theme == "light" ? "black" : "white"}
+        />
       </TouchableOpacity>
-    </View>
+    </ThemedView>
   );
 }
 
