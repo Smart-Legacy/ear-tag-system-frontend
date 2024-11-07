@@ -53,6 +53,12 @@ export default function HomePage() {
               containerStyles="w-full mt-7"
               textStyles="bold text-xl"
             />
+            <CustomButton
+              title="Main page"
+              handlePress={() => router.push("/initialInfo" as Href<string>)}
+              containerStyles="w-full mt-7"
+              textStyles="bold text-xl"
+            />
           </View>
         </View>
       </ScrollView>
