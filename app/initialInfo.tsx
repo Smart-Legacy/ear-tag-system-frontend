@@ -14,8 +14,13 @@ import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
 import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import FormField from "@/components/FormField";
+import { useColorScheme } from "react-native";
 
 const InitialInfo = () => {
+  const theme = useColorScheme() ?? "light";
+
   const [formData, setFormData] = useState({
     fullName: "",
     contactNumber: "",
@@ -54,132 +59,118 @@ const InitialInfo = () => {
   };
 
   return (
-    <View className="flex-1 p-4">
+    <ThemedView darkColor="black" lightColor="white" className="flex-1 p-4">
       <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
-        <ThemedText className="text-xl font-bold mb-4">
+        <ThemedText className="text-xl font-bold my-6 text-center">
           Farmer Information
         </ThemedText>
 
         {/* Full Name */}
         <View className="mb-4">
-          <ThemedText>Full Name</ThemedText>
-          <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
-            placeholder="Enter full name"
+          <FormField
+            title="Full name"
             value={formData.fullName}
-            onChangeText={(text) => handleChange("fullName", text)}
+            handleChangeText={(text) => handleChange("fullName", text)}
           />
         </View>
 
         {/* Contact Number */}
         <View className="mb-4">
-          <ThemedText>Contact Number</ThemedText>
-          <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
-            placeholder="Enter contact number"
+          <FormField
+            title="Contact Number"
             value={formData.contactNumber}
-            onChangeText={(text) => handleChange("contactNumber", text)}
+            handleChangeText={(text) => handleChange("contactNumber", text)}
             keyboardType="phone-pad"
           />
         </View>
 
         {/* Email Address */}
         <View className="mb-4">
-          <ThemedText>Email Address</ThemedText>
-          <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
-            placeholder="Enter email address"
-            value={formData.emailAddress}
-            onChangeText={(text) => handleChange("emailAddress", text)}
+          <FormField
+            title="Email Address"
+            value={formData.fullName}
+            handleChangeText={(text) => handleChange("emailAddress", text)}
             keyboardType="email-address"
           />
         </View>
 
         {/* Postal Address */}
         <View className="mb-4">
-          <ThemedText>Postal Address</ThemedText>
-          <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
-            placeholder="Enter postal address"
+          <FormField
+            title="Postal Address"
             value={formData.postalAddress}
-            onChangeText={(text) => handleChange("postalAddress", text)}
+            handleChangeText={(text) => handleChange("postalAddress", text)}
           />
         </View>
 
         {/* REGION */}
         <View className="mb-4">
-          <ThemedText>Region</ThemedText>
-          <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
-            placeholder="Enter region"
+          <FormField
+            title="Region"
             value={formData.region}
-            onChangeText={(text) => handleChange("region", text)}
+            handleChangeText={(text) => handleChange("region", text)}
           />
         </View>
 
         {/* ZONE */}
         <View className="mb-4">
-          <ThemedText>Zone</ThemedText>
-          <TextInput
+          <FormField
             className="border p-2 bg-gray-700 text-white rounded-md"
-            placeholder="Enter zone"
+            title="Zone"
             value={formData.zone}
-            onChangeText={(text) => handleChange("zone", text)}
+            handleChangeText={(text) => handleChange("zone", text)}
           />
         </View>
 
         {/* WOREDA */}
         <View className="mb-4">
-          <ThemedText>Woreda</ThemedText>
-          <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
-            placeholder="Enter woreda"
+          <FormField
+            title="Woreda"
             value={formData.woreda}
-            onChangeText={(text) => handleChange("woreda", text)}
+            handleChangeText={(text) => handleChange("woreda", text)}
           />
         </View>
 
         {/* KEBELE */}
         <View className="mb-4">
-          <ThemedText>Kebele</ThemedText>
-          <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
-            placeholder="Enter kebele"
+          <FormField
+            title="Kebele"
             value={formData.kebele}
-            onChangeText={(text) => handleChange("kebele", text)}
+            handleChangeText={(text) => handleChange("kebele", text)}
           />
         </View>
 
         {/* Farm/Business Name */}
         <View className="mb-4">
-          <ThemedText>Farm/Business Name (if applicable)</ThemedText>
-          <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
-            placeholder="Enter farm or business name"
+          <FormField
+            title="Farm/Business Name (if applicable)"
             value={formData.farmName}
-            onChangeText={(text) => handleChange("farmName", text)}
+            handleChangeText={(text) => handleChange("farmName", text)}
           />
         </View>
 
         {/* National or Woreda ID */}
         <View className="mb-4">
-          <ThemedText>National or Woreda ID</ThemedText>
-          <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
-            placeholder="Enter ID or registration number"
+          <FormField
+            title="National or Woreda ID"
             value={formData.idNumber}
-            onChangeText={(text) => handleChange("idNumber", text)}
+            handleChangeText={(text) => handleChange("idNumber", text)}
           />
         </View>
 
         {/* Date of Birth */}
         <View className="mb-4">
-          <ThemedText>Date of Birth</ThemedText>
+          <ThemedText textStyles="mb-2">Date of Birth</ThemedText>
           <TouchableOpacity
-            className="bg-gray-700 p-3 rounded-md"
+            style={{
+              backgroundColor:
+                theme === "light" ? "rgb(229 231 235)" : "rgb(55 65 81)",
+              padding: 16,
+              borderRadius: 8,
+            }}
             onPress={() => setShowDatePicker(true)}
           >
-            <Text style={{ color: "white" }}>
+            <Text style={{ color: theme === "light" ? "black" : "white" }}>
               {formData.dateOfBirth.toDateString()}
             </Text>
           </TouchableOpacity>
@@ -195,11 +186,16 @@ const InitialInfo = () => {
 
         {/* Gender */}
         <View className="mb-4">
-          <ThemedText>Gender</ThemedText>
+          <ThemedText textStyles="mb-2">Gender</ThemedText>
           <Picker
             selectedValue={formData.gender}
             onValueChange={(itemValue) => handleChange("gender", itemValue)}
-            style={{ color: "white", backgroundColor: "#333", borderRadius: 8 }}
+            style={{
+              color: theme === "light" ? "black" : "white",
+              backgroundColor:
+                theme === "light" ? "rgb(229 231 235)" : "rgb(55 65 81)",
+              borderRadius: 16,
+            }}
           >
             <Picker.Item label="Select Gender" value="" />
             <Picker.Item label="Male" value="male" />
@@ -210,23 +206,19 @@ const InitialInfo = () => {
 
         {/* Occupation */}
         <View className="mb-4">
-          <ThemedText>Occupation</ThemedText>
-          <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
-            placeholder="Enter occupation"
+          <FormField
+            title="Occupation"
             value={formData.occupation}
-            onChangeText={(text) => handleChange("occupation", text)}
+            handleChangeText={(text) => handleChange("occupation", text)}
           />
         </View>
 
         {/* Years of Experience */}
         <View className="mb-4">
-          <ThemedText>Years of Experience in Livestock Farming</ThemedText>
-          <TextInput
-            className="border p-2 bg-gray-700 text-white rounded-md"
-            placeholder="Enter years of experience"
+          <FormField
+            title="Years of Experience in Livestock Farming"
             value={formData.experience}
-            onChangeText={(text) => handleChange("experience", text)}
+            handleChangeText={(text) => handleChange("experience", text)}
             keyboardType="numeric"
           />
         </View>
@@ -240,7 +232,7 @@ const InitialInfo = () => {
           <Ionicons name="save-outline" size={24} color="white" />
         </TouchableOpacity>
       </ScrollView>
-    </View>
+    </ThemedView>
   );
 };
 
