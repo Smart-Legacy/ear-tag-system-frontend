@@ -7,6 +7,7 @@ import FormField from "@/components/FormField";
 import CustomButton from "@/components/CustomButton";
 import { Link } from "expo-router";
 import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 
 const SignUp = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
@@ -17,7 +18,11 @@ const SignUp = () => {
   return (
     <SafeAreaView className=" h-full">
       <ScrollView>
-        <View className="w-full justify-center min-h-[85vh] px-4 my-6">
+        <ThemedView
+          darkColor="black"
+          lightColor="white"
+          className="w-full justify-center min-h-[100vh] px-4 "
+        >
           <View className="justify-left">
             <Image
               source={MedaFarm}
@@ -70,7 +75,7 @@ const SignUp = () => {
               Sign In
             </Link>
           </View>
-        </View>
+        </ThemedView>
       </ScrollView>
     </SafeAreaView>
   );

@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 
 import FormField from "@/components/FormField";
 import CustomButton from "@/components/CustomButton";
@@ -17,7 +18,11 @@ const SignIn = () => {
   return (
     <SafeAreaView className="h-full">
       <ScrollView>
-        <View className="w-full justify-center min-h-[85vh] px-4 my-6">
+        <ThemedView
+          darkColor="black"
+          lightColor="white"
+          className="w-full justify-center min-h-[100vh] px-4 "
+        >
           <View className="justify-left">
             <Image
               source={MedaFarm}
@@ -56,7 +61,7 @@ const SignIn = () => {
               Sign Up
             </Link>
           </View>
-        </View>
+        </ThemedView>
       </ScrollView>
     </SafeAreaView>
   );

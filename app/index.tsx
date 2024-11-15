@@ -18,6 +18,7 @@ import { StatusBar } from "expo-status-bar";
 import CoverImage from "@/assets/images/MedaNameWIconSlogan.png";
 import CustomButton from "@/components/CustomButton";
 import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 import { Href } from "expo-router";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -29,7 +30,11 @@ export default function HomePage() {
   return (
     <SafeAreaView className="h-full">
       <ScrollView contentContainerStyle={{ height: "100%" }}>
-        <View className="items-center h-full justify-center">
+        <ThemedView
+          darkColor="black"
+          lightColor="white"
+          className="items-center h-full justify-center"
+        >
           <View className="w-full justify-center items-center min-h-85[vh] px-4">
             <Image
               source={CoverImage}
@@ -60,7 +65,7 @@ export default function HomePage() {
               textStyles="bold text-xl"
             />
           </View>
-        </View>
+        </ThemedView>
       </ScrollView>
       <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
