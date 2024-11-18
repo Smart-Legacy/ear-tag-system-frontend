@@ -17,9 +17,12 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import FormField from "@/components/FormField";
 import { useColorScheme } from "react-native";
+import { useRouter } from "expo-router";
+import { Href } from "expo-router";
 
 const InitialInfo = () => {
   const theme = useColorScheme() ?? "light";
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -55,7 +58,8 @@ const InitialInfo = () => {
 
   const handleSubmit = () => {
     // Add validation if needed
-    Alert.alert("Farmer Information Saved", JSON.stringify(formData, null, 2));
+    //Alert.alert("Farmer Information Saved", JSON.stringify(formData, null, 2));
+    router.push(`/(tabs)` as Href<string>);
   };
 
   return (
