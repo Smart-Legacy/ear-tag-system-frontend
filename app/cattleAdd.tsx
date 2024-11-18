@@ -16,6 +16,7 @@ import DateTimePicker, {
 } from "@react-native-community/datetimepicker";
 import { ThemedText } from "@/components/ThemedText";
 import { useColorScheme } from "react-native";
+import { ThemedView } from "@/components/ThemedView";
 
 export default function CattleAddPage() {
   const theme = useColorScheme() ?? "light";
@@ -81,7 +82,7 @@ export default function CattleAddPage() {
   };
 
   return (
-    <View className="flex-1  p-4 ">
+    <ThemedView className="flex-1  p-4 ">
       <ScrollView contentContainerStyle={{ padding: 16 }}>
         <ThemedText
           lightColor="black"
@@ -214,6 +215,6 @@ export default function CattleAddPage() {
           <Ionicons name="add-circle-outline" size={24} color="white" />
         </TouchableOpacity>
       </ScrollView>
-    </View>
+    </ThemedView>
   );
 }

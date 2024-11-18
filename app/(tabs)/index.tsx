@@ -39,7 +39,7 @@ export default function HomeScreen() {
   const barColor = useThemeColor({ light: "black", dark: "white" }, "text");
 
   return (
-    <View style={{ flex: 1 }}>
+    <ThemedView lightColor="white" darkColor="black" style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.container}>
         <StatusBar style="light" />
         <View className="align-left w-full mt-4 px-4">
@@ -191,7 +191,7 @@ export default function HomeScreen() {
           className="w-[40px] h-[40px]"
         />
       </TouchableOpacity>
-    </View>
+    </ThemedView>
   );
 }
 

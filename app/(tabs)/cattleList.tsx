@@ -47,9 +47,9 @@ export default function CattleListPage() {
         Livestock
       </ThemedText>
       <ThemedView
-        darkColor="rgb(229 231 235)"
+        darkColor="black"
         lightColor="rgb(229 231 235)"
-        otherStyles="border-2 border-gray-300 mb-4 w-full h-16 px-4 rounded-2xl items-center flex-row"
+        otherStyles="border-2 border-gray-300 focus:border-secondary mb-4 w-full h-16 px-4 rounded-2xl items-center flex-row"
       >
         <TextInput
           className="flex-1 text-base"
@@ -65,19 +65,29 @@ export default function CattleListPage() {
           filteredCattle.map((cattle, index) => (
             <TouchableOpacity
               key={index}
-              className="bg-gray-200 px-4 py-2 rounded-lg flex-row justify-between items-center shadow"
+              style={{
+                backgroundColor:
+                  theme === "light" ? "rgb(229 231 235)" : "rgb(55 65 81)",
+              }}
+              className="px-4 py-2 rounded-lg flex-row justify-between items-center shadow"
               onPress={() =>
                 router.push(`/detail/${cattle.id}` as Href<string>)
               }
             >
               <View>
                 <View className="flex flex-row gap-2">
-                  <Text className="text-lg font-bold">{cattle.name}</Text>
-                  <Text className="text-gray-700 pt-2">{cattle.id}</Text>
+                  <ThemedText className="text-lg font-bold">
+                    {cattle.name}
+                  </ThemedText>
+                  <ThemedText>{cattle.id}</ThemedText>
                 </View>
-                <Text className="text-gray-700">{cattle.weight}</Text>
+                <ThemedText>{cattle.weight}</ThemedText>
               </View>
-              <Ionicons name="chevron-forward" size={24} color="black" />
+              <Ionicons
+                name="chevron-forward"
+                size={24}
+                color={theme == "light" ? "black" : "white"}
+              />
             </TouchableOpacity>
           ))
         ) : (
@@ -89,7 +99,7 @@ export default function CattleListPage() {
       <TouchableOpacity
         style={styles.fixedIconContainer}
         onPress={() => router.push(`/cattleAdd` as Href<string>)}
-        className="rounded-3xl  border border-gray-200 shadow shadow-2xl"
+        className="rounded-3xl  border border-gray-300 shadow shadow-2xl"
       >
         <Ionicons
           size={48}
