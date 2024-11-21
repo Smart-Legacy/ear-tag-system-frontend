@@ -6,6 +6,7 @@ import {
   StyleProp,
   TextStyle,
 } from "react-native";
+import { useThemeColor } from "@/hooks/useThemeColor";
 import { ThemedText } from "./ThemedText";
 
 import Eye from "@/assets/icons/eye.png";
@@ -17,6 +18,8 @@ export type FormProps = TextProps & {
   handleChangeText?: (text: string) => void;
   otherStyles?: string;
   keyboardType?: KeyboardTypeOptions;
+  lightColor?: string;
+  darkColor?: string;
 };
 
 const FormField = ({
@@ -25,7 +28,10 @@ const FormField = ({
   handleChangeText,
   otherStyles,
   keyboardType,
+  lightColor,
+  darkColor,
 }: FormProps) => {
+  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -33,11 +39,13 @@ const FormField = ({
       <ThemedText className="text-base font-pmedium">{title}</ThemedText>
       <View className="border-2 border-gray-500 w-full h-16 bg-black-100 px-4 rounded-2xl focus:border-secondary items-center flex-row">
         <TextInput
-          className="flex-1 text-white font-psemibold text-base"
+          style={[{ color }]}
+          className="flex-1 font-psemibold text-base"
           value={value}
           placeholderTextColor="#7b7b8b"
           onChangeText={handleChangeText}
           secureTextEntry={title === "Password" && !showPassword}
+          keyboardType={keyboardType}
         />
         {title === "Password" && (
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
